@@ -25,6 +25,9 @@ const img = document.querySelector(".image");
 const nextBtn = document.querySelector(".next");
 const prevBtn = document.querySelector(".prev");
 
+const thumbArr = document.querySelectorAll(".my-img");
+console.log(thumbArr);
+
 
 let imgArr = [
 ];
@@ -35,7 +38,10 @@ images.forEach((element, index) => {
 img.setAttribute("src", imgArr[0]);
 
 let index = 0;
+thumbArr[index].classList.toggle("active");
+
 nextBtn.addEventListener("click", () =>{
+
     if (index >= 4){
         index = 0;
     }
@@ -43,6 +49,8 @@ nextBtn.addEventListener("click", () =>{
         index += 1;
     }
     img.setAttribute("src", imgArr[index]);
+    thumbArr[index].classList.add("active");
+    thumbArr[index - 1].classList.remove("active");
 
 });
 
@@ -54,6 +62,8 @@ prevBtn.addEventListener("click", () =>{
         index -= 1;
     }
     img.setAttribute("src", imgArr[index]);
+    thumbArr[index].classList.add("active");
+    thumbArr[index + 1].classList.remove("active");
 
 });
 
