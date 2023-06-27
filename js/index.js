@@ -25,20 +25,36 @@ const img = document.querySelector(".image");
 const nextBtn = document.querySelector(".next");
 const prevBtn = document.querySelector(".prev");
 
+const titleDescDiv = document.querySelector(".title-desc");
+
 const thumbArr = document.querySelectorAll(".my-img");
 console.log(thumbArr);
 
 
-let imgArr = [
-];
+let imgArr = [];
+let headingArr = [];
+let descArr = [];
 
 images.forEach((element, index) => {
     imgArr.push(element["image"]);
+    headingArr.push(element["title"]);
+    descArr.push(element["text"]);
+
 });
+console.log(headingArr, descArr);
 img.setAttribute("src", imgArr[0]);
 
 let index = 0;
 thumbArr[index].classList.toggle("active");
+
+let myH, myP;
+
+myH = document.createElement("h1");
+myH.innerHTML = headingArr[index];
+myP = document.createElement("p");
+myP.innerHTML = descArr[index];
+
+titleDescDiv.append(myH, myP);
 
 nextBtn.addEventListener("click", () =>{
 
@@ -48,9 +64,11 @@ nextBtn.addEventListener("click", () =>{
     else{
         index += 1;
     }
+    myP.innerHTML = descArr[index];
+    myH.innerHTML = headingArr[index];
     img.setAttribute("src", imgArr[index]);
-    thumbArr[index].classList.add("active");
-    thumbArr[index - 1].classList.remove("active");
+    thumbArr[index - 1].classList.toggle("active");
+    thumbArr[index].classList.toggle("active");
 
 });
 
@@ -61,9 +79,12 @@ prevBtn.addEventListener("click", () =>{
     else{
         index -= 1;
     }
+    myP.innerHTML = descArr[index];
+    myH.innerHTML = headingArr[index];
     img.setAttribute("src", imgArr[index]);
-    thumbArr[index].classList.add("active");
-    thumbArr[index + 1].classList.remove("active");
+    thumbArr[index + 1].classList.toggle("active");
+    thumbArr[index].classList.toggle("active");
+
 
 });
 

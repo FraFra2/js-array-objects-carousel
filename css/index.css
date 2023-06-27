@@ -15,3 +15,7 @@
 .active{
     opacity: 1;
 }
+
+.title-desc{
+    bottom: 0px;
+}
